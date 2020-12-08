@@ -10,7 +10,8 @@
     "test": "jest",
     "build": "npm run clean && ng-packagr -p package.json",
     "clean": "rm -rf dist",
-    "build:dev": "tsc && cp package.json package-lock.json dist"
+    "build:dev": "tsc && cp package.json package-lock.json dist",
+    "prepare": "npm run build"
   },
   "ngPackage": {
     "lib": {
