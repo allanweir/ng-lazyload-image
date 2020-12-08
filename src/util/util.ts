@@ -18,6 +18,9 @@ export function setImage(element: HTMLImageElement | HTMLDivElement, imagePath: 
       element.src = imagePath;
     }
   } else {
+    if (cssBackgroundPrefix == null) {
+      cssBackgroundPrefix = '';
+    }
     element.style.backgroundImage = `${cssBackgroundPrefix} url('${imagePath}')`;
   }
   return element;
