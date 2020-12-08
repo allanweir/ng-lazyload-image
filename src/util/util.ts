@@ -10,7 +10,7 @@ export function isImageElement(element: HTMLImageElement | HTMLDivElement): elem
   return element.nodeName.toLowerCase() === 'img';
 }
 
-export function setImage(element: HTMLImageElement | HTMLDivElement, imagePath: string, useSrcset?: boolean) {
+export function setImage(element: HTMLImageElement | HTMLDivElement, imagePath: string, useSrcset?: boolean, cssBackgroundPrefix?: string) {
   if (isImageElement(element)) {
     if (useSrcset && 'srcset' in element) {
       element.srcset = imagePath;
@@ -18,7 +18,7 @@ export function setImage(element: HTMLImageElement | HTMLDivElement, imagePath: 
       element.src = imagePath;
     }
   } else {
-    element.style.backgroundImage = `url('${imagePath}')`;
+    element.style.backgroundImage = `${cssBackgroundPrefix} url('${imagePath}')`;
   }
   return element;
 }
@@ -45,12 +45,12 @@ export const setSourcesToLazy = setSources('lazyLoad');
 const setSourcesToError = setSources('errorImage');
 
 function setImageAndSources(setSourcesFn: (image: HTMLImageElement) => void) {
-  return (element: HTMLImageElement | HTMLDivElement, imagePath?: string, useSrcset?: boolean) => {
+  return (element: HTMLImageElement | HTMLDivElement, imagePath?: string, useSrcset?: boolean, cssBackgroundPrefix?: string) => {
     if (isImageElement(element) && isChildOfPicture(element)) {
       setSourcesFn(element);
     }
     if (imagePath) {
-      setImage(element, imagePath, useSrcset);
+      setImage(element, imagePath, useSrcset, cssBackgroundPrefix);
     }
   };
 }

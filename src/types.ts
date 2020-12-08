@@ -17,6 +17,10 @@ export type Attributes<T = any> = {
    */
   imagePath: string;
   /**
+   * A prefix string when setting the image as a CSS background
+   */
+  cssBackgroundPrefix?: string;
+  /**
    * A URI path to the default image
    */
   defaultImagePath?: string;

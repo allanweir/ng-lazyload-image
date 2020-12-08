@@ -16,6 +16,7 @@ export class LazyLoadImageDirective implements OnChanges, AfterContentInit, OnDe
   @Input() customObservable?: Observable<any>; // Pass your own event emitter
   @Input() offset?: number; // The number of px a image should be loaded before it is in view port
   @Input() useSrcset?: boolean; // Whether srcset attribute should be used instead of src
+  @Input() cssBackgroundPrefix?: string; // A prefix string when setting the image as a CSS background
   @Input() decode?: boolean; // Decode the image before appending to the DOM
   @Input() debug?: boolean; // Will print some debug info when `true`
   @Output() onStateChange: EventEmitter<StateChange> = new EventEmitter(); // Emits an event on every state change
@@ -47,6 +48,7 @@ export class LazyLoadImageDirective implements OnChanges, AfterContentInit, OnDe
       defaultImagePath: this.defaultImage,
       errorImagePath: this.errorImage,
       useSrcset: this.useSrcset,
+      cssBackgroundPrefix: this.cssBackgroundPrefix,
       offset: this.offset ? this.offset | 0 : 0,
       scrollContainer: this.scrollTarget,
       customObservable: this.customObservable,

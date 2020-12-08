@@ -6,7 +6,7 @@ import { isChildOfPicture, isImageElement, setImage, setImageAndSourcesToDefault
 
 export abstract class SharedHooks<E> extends Hooks<E> {
   setup(attributes: Attributes): void {
-    setImageAndSourcesToDefault(attributes.element, attributes.defaultImagePath, attributes.useSrcset);
+    setImageAndSourcesToDefault(attributes.element, attributes.defaultImagePath, attributes.useSrcset, attributes.cssBackgroundPrefix);
     addCssClassName(attributes.element, cssClassNames.loading);
 
     if (hasCssClassName(attributes.element, cssClassNames.loaded)) {
@@ -24,13 +24,13 @@ export abstract class SharedHooks<E> extends Hooks<E> {
       // Set the image right away for bots for better SEO
       return [attributes.imagePath];
     }
-    const { element, useSrcset, imagePath, decode } = attributes;
+    const { element, useSrcset, imagePath, decode, cssBackgroundPrefix } = attributes;
     let img: HTMLImageElement;
     if (isImageElement(element) && isChildOfPicture(element)) {
       const parentClone = element.parentNode!.cloneNode(true) as HTMLPictureElement;
       img = parentClone.getElementsByTagName('img')[0];
       setSourcesToLazy(img);
-      setImage(img, imagePath, useSrcset);
+      setImage(img, imagePath, useSrcset, cssBackgroundPrefix);
     } else {
       img = new Image();
       if (isImageElement(element) && element.referrerPolicy) {
@@ -57,14 +57,14 @@ export abstract class SharedHooks<E> extends Hooks<E> {
   }
 
   setErrorImage(error: Error, attributes: Attributes): void {
-    const { element, useSrcset, errorImagePath } = attributes;
-    setImageAndSourcesToError(element, errorImagePath, useSrcset);
+    const { element, useSrcset, errorImagePath, cssBackgroundPrefix } = attributes;
+    setImageAndSourcesToError(element, errorImagePath, useSrcset, cssBackgroundPrefix);
     addCssClassName(element, cssClassNames.failed);
   }
 
   setLoadedImage(imagePath: string, attributes: Attributes): void {
-    const { element, useSrcset } = attributes;
-    setImageAndSourcesToLazy(element, imagePath, useSrcset);
+    const { element, useSrcset, cssBackgroundPrefix } = attributes;
+    setImageAndSourcesToLazy(element, imagePath, useSrcset, cssBackgroundPrefix);
   }
 
   isDisabled(): boolean {
