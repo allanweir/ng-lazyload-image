@@ -10,8 +10,7 @@
     "test": "jest",
     "build": "npm run clean && ng-packagr -p package.json",
     "clean": "rm -rf dist",
-    "build:dev": "tsc && cp package.json package-lock.json dist",
-    "prepare": "npm run build"
+    "build:dev": "tsc && cp package.json package-lock.json dist"
   },
   "ngPackage": {
     "lib": {
@@ -20,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjoskar/ng-lazyload-image.git"
+    "url": "git+https://github.com/allanweir/ng-lazyload-image.git"
   },
   "keywords": [
     "lazy-load",
