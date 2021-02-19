@@ -49,6 +49,10 @@ export type Attributes<T = any> = {
    */
   decode?: boolean;
   /**
+   * If true, load the image immediately
+   */
+  loadImmediately?: boolean;
+  /**
    * If true, try to decode the image before put it to the DOM
    */
   onStateChange: EventEmitter<StateChange>;

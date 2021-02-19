@@ -19,6 +19,7 @@ export class LazyLoadImageDirective implements OnChanges, AfterContentInit, OnDe
   @Input() cssBackgroundPrefix?: string; // A prefix string when setting the image as a CSS background
   @Input() decode?: boolean; // Decode the image before appending to the DOM
   @Input() debug?: boolean; // Will print some debug info when `true`
+  @Input() loadImmediately?: boolean; // Will load the image immediately
   @Output() onStateChange: EventEmitter<StateChange> = new EventEmitter(); // Emits an event on every state change
   private propertyChanges$: ReplaySubject<Attributes>;
   private elementRef: ElementRef;
@@ -53,6 +54,7 @@ export class LazyLoadImageDirective implements OnChanges, AfterContentInit, OnDe
       scrollContainer: this.scrollTarget,
       customObservable: this.customObservable,
       decode: this.decode,
+      loadImmediately: this.loadImmediately,
       onStateChange: this.onStateChange,
       id: this.uid,
     });

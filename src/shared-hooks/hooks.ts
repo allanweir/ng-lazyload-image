@@ -73,7 +73,7 @@ export abstract class SharedHooks<E> extends Hooks<E> {
   }
 
   skipLazyLoading(attributes: Attributes): boolean {
-    return this.isBot(attributes);
+    return attributes.loadImmediately || this.isBot(attributes);
   }
 
   isBot(attributes?: Attributes): boolean {
