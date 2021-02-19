@@ -12,7 +12,7 @@
     "clean": "rm -rf dist",
     "build:dev": "tsc && cp package.json package-lock.json dist",
     "prepare": "npm run build",
-    "postinstall": "mv ./dist/* ./ && rmdir ./dist"
+    "postinstall": "npm run build && mv ./dist/* ./ && rmdir ./dist"
   },
   "ngPackage": {
     "lib": {
