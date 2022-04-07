@@ -6,8 +6,10 @@ import { isChildOfPicture, isImageElement, setImage, setImageAndSourcesToDefault
 
 export abstract class SharedHooks<E> extends Hooks<E> {
   setup(attributes: Attributes): void {
-    setImageAndSourcesToDefault(attributes.element, attributes.defaultImagePath, attributes.useSrcset, attributes.cssBackgroundPrefix);
-    addCssClassName(attributes.element, cssClassNames.loading);
+    setImageAndSourcesToDefault(attributes.element, attributes.defaultImagePath, attributes.useSrcset);
+    if (attributes.imagePath) {
+      addCssClassName(attributes.element, cssClassNames.loading);
+    }
 
     if (hasCssClassName(attributes.element, cssClassNames.loaded)) {
       removeCssClassName(attributes.element, cssClassNames.loaded);
