@@ -35,6 +35,7 @@ export class LazyLoadImageDirective implements OnChanges, AfterContentInit, OnDe
     this.propertyChanges$ = new ReplaySubject();
     this.hooks = hooks;
     this.hooks.setPlatformId(platformId);
+    this.hooks.setNgZone(ngZone);
     this.uid = Math.random().toString(36).substr(2, 9);
   }
 

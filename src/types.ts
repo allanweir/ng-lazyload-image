@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, NgZone } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
 import { getNavigator } from './util/util';
 
@@ -65,9 +65,14 @@ export type Attributes<T = any> = {
 export abstract class Hooks<E = unknown> {
   navigator?: Navigator = getNavigator();
   protected platformId!: Object;
+  protected ngZone!: NgZone;
 
   setPlatformId(platformId: Object) {
     this.platformId = platformId;
+  }
+
+  setNgZone(ngZone: NgZone) {
+    this.ngZone = ngZone;
   }
 
   abstract getObservable(attributes: Attributes): Observable<E>;
