@@ -1,4 +1,5 @@
 import { isPlatformServer } from '@angular/common';
+import { NgZone } from '@angular/core';
 import { ObservableInput } from 'rxjs';
 import { Attributes, Hooks } from '../types';
 import { addCssClassName, cssClassNames, hasCssClassName, removeCssClassName } from '../util/css.util';
@@ -85,5 +86,9 @@ export abstract class SharedHooks<E> extends Hooks<E> {
       );
     }
     return false;
+  }
+
+  getNgZone(): NgZone {
+      return this.ngZone;
   }
 }
