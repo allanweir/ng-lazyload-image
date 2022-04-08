@@ -65,7 +65,7 @@ export type Attributes<T = any> = {
 export abstract class Hooks<E = unknown> {
   navigator?: Navigator = getNavigator();
   protected platformId!: Object;
-  protected ngZone!: NgZone;
+  public ngZone!: NgZone;
 
   setPlatformId(platformId: Object) {
     this.platformId = platformId;
